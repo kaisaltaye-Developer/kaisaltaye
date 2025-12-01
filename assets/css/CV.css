@@ -39,7 +39,7 @@
 
     /* See CV button */
     #seeCvBtn {
-      background: var(--bg-color);
+      /* background: var(--bg-color); */
       color: var(--text-color);
 
 
@@ -47,7 +47,7 @@
       border-radius: 999px;
       border: none;
       cursor: pointer;
-      background: var(--main-color);
+      /* background: var(--main-color); */
       /* color: var(--white-color); */
       color: orange;
       font-size: 0.95rem;
