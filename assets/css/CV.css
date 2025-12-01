@@ -163,8 +163,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;   /* fill full page area */
-  height: 100%;  /* fill full page area */
+ 
 }
     .profile-page img {
       min-height: 50px;
