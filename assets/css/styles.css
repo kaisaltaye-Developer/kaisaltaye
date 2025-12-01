@@ -36,6 +36,17 @@
   filter: none;
 }
 
+
+.about-download {
+  display: flex;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+/* Push See CV to the far right */
+#seeCvBtn {
+  margin-left: auto;
+}
 @media (prefers-color-scheme: light){
   :root{
     --bg: #f7f8fb;

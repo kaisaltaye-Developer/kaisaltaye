@@ -13,6 +13,15 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
   />
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+
 
   <!-- Font Awesome -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -23,6 +32,7 @@
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/styles.css">
+   <link rel="stylesheet" href="assets/css/CV.css">
 </head>
 
 <body>
@@ -167,36 +177,159 @@
               </div>
 
               <!-- Right column -->
-              <div class="col-12 col-lg-6">
-                <div class="about-info">
-                  <h3>Personal Information</h3>
-                  <ul>
-                    <li><span class="title">Name</span><span class="value">Kais Abdul Basit Mustafa</span></li>
-                    <li><span class="title">Residence</span><span class="value">Baghdad, Iraq • Amman, Jordan</span></li>
-                    <li><span class="title">Email</span><span class="value"><a href="mailto:kaisaltaye@gmail.com">kaisaltaye@gmail.com</a></span></li>
-                    <li>
-                      <span class="title">GitHub</span>
-                      <span class="value"><a href="https://github.com/kaisaltaye-Developer" target="_blank" rel="noopener">github.com/kaisaltaye-Developer</a></span>
-                    </li>
-                    <!-- <li>
-                      <span class="title">LinkedIn</span>
-                      <span class="value"><a href="https://www.linkedin.com/in/kais-alshaar-09828629a" target="_blank" rel="noopener">linkedin.com/in/kais-alshaar-09828629a</a></span>
-                    </li> -->
-                    <li><span class="title">Freelance</span><span class="value">Available</span></li>
-                    <li><span class="title">Full-time</span><span class="value">Open</span></li>
-                  </ul>
+          <div class="col-12 col-lg-6">
+  <div class="about-info">
+    <h3>Personal Information</h3>
+    <ul>
+      <li><span class="title">Name</span><span class="value">Kais Abdul Basit Mustafa</span></li>
+      <li><span class="title">Residence</span><span class="value">Baghdad, Iraq • Amman, Jordan</span></li>
+      <li><span class="title">Email</span><span class="value"><a href="mailto:kaisaltaye@gmail.com">kaisaltaye@gmail.com</a></span></li>
+      <li>
+        <span class="title">GitHub</span>
+        <span class="value"><a href="https://github.com/kaisaltaye-Developer" target="_blank" rel="noopener">github.com/kaisaltaye-Developer</a></span>
+      </li>
+      <!-- <li>
+        <span class="title">LinkedIn</span>
+        <span class="value"><a href="https://www.linkedin.com/in/kais-alshaar-09828629a" target="_blank" rel="noopener">linkedin.com/in/kais-alshaar-09828629a</a></span>
+      </li> -->
+      <li><span class="title">Freelance</span><span class="value">Available</span></li>
+      <li><span class="title">Full-time</span><span class="value">Open</span></li>
+    </ul>
 
-                  <div class="about-download">
-                    <a class="btn small" id="downloadCV" href="./assets/docs/Kais_Altaye_CV.pdf" download>
-                      <i class="fa-regular fa-file-lines"></i> Download CV
-                    </a>
-                  </div>
-                </div>
-              </div>
+    <div class="about-download">
+      <a class="btn small" id="downloadCV" href="./assets/docs/Kais_Altaye_CV.pdf" download>
+        <i class="fa-regular fa-file-lines"></i> Download CV
+      </a>
+
+      <!-- 👇 New See CV button -->
+      <button class="btn small" id="seeCvBtn" type="button">
+        <i class="fa-regular fa-eye"></i> See CV
+      </button>
+    </div>
+  </div>
+</div>
+
 
             </div>
           </div>
         </section>
+
+
+
+<!-- Start CV Section -->
+ <!-- Orange overlay with the book inside -->
+  <div class="cv-overlay" id="cvOverlay">
+    <div class="wrapper">
+      <!-- Covers -->
+      <div class="cover cover-left"></div>
+      <div class="cover cover-right"></div>
+
+      <!-- Book -->
+      <div class="book">
+        <!-- LEFT PAGE (Page 1 image + number 1 at bottom) -->
+        <div class="book-page page-left">
+          <div class="profile-page">
+            <img  src="assets/cvimage/Kais_Altaye_CV_Page_1.jpg" alt="CV Page 1" />
+            <span class="number-page">1</span>
+          </div>
+        </div>
+
+        <!-- RIGHT SHEET 1 (Pages 2 & 3) -->
+        <div class="book-page page-right turn" id="page-1">
+          <!-- Front = Page 2 -->
+          <div class="page-front">
+            <img
+             src="assets/cvimage/Kais_Altaye_CV_Page_2.jpg"
+              alt="CV Page 2"
+              style="width: 100%; height: 100%; object-fit: contain;"
+            />
+            <span class="number-page">2</span>
+            <span class="nextprev-btn" data-page="page-1">
+              <i class="fa-solid fa-chevron-right"></i>
+            </span>
+          </div>
+
+          <!-- Back = Page 3 -->
+          <div class="page-back">
+            <img
+             src="assets/cvimage/Kais_Altaye_CV_Page_3.jpg"
+              alt="CV Page 3"
+              style="width: 100%; height: 100%; object-fit: contain;"
+            />
+            <span class="number-page">3</span>
+            <span class="nextprev-btn back" data-page="page-1">
+              <i class="fa-solid fa-chevron-left"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- RIGHT SHEET 2 (Pages 4 & 5) -->
+        <div class="book-page page-right turn" id="page-2">
+          <!-- Front = Page 4 -->
+          <div class="page-front">
+            <img
+            src="assets/cvimage/Kais_Altaye_CV_Page_4.jpg"
+              alt="CV Page 4"
+              style="width: 100%; height: 100%; object-fit: contain;"
+            />
+            <span class="number-page">4</span>
+            <span class="nextprev-btn" data-page="page-2">
+              <i class="fa-solid fa-chevron-right"></i>
+            </span>
+          </div>
+
+          <!-- Back = Page 5 -->
+          <div class="page-back">
+            <img
+              src="assets/cvimage/Kais_Altaye_CV_Page_5.jpg"
+              alt="CV Page 5"
+              style="width: 100%; height: 100%; object-fit: contain;"
+            />
+            <span class="number-page">5</span>
+            <span class="nextprev-btn back" data-page="page-2">
+              <i class="fa-solid fa-chevron-left"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- RIGHT SHEET 3 (Pages 6 & 7) -->
+        <div class="book-page page-right turn" id="page-3">
+          <!-- Front = Page 6 -->
+          <div class="page-front">
+            <img
+              src="assets/cvimage/Kais_Altaye_CV_Page_6.jpg"
+              alt="CV Page 6"
+              style="width: 100%; height: 100%; object-fit: contain;"
+            />
+            <span class="number-page">6</span>
+            <span class="nextprev-btn" data-page="page-3">
+              <i class="fa-solid fa-chevron-right"></i>
+            </span>
+          </div>
+
+          <!-- Back = Page 7 -->
+          <div class="page-back">
+            <img
+              src="assets/cvimage/Kais_Altaye_CV_Page_7.jpg"
+              alt="CV Page 7"
+              style="width: 100%; height: 100%; object-fit: contain;"
+            />
+            <span class="number-page">7</span>
+            <span class="nextprev-btn back" data-page="page-3">
+              <i class="fa-solid fa-chevron-left"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to profile button -->
+      <button class="back-profile">
+        <i class="fa-solid fa-user"></i>
+        <p>Profile</p>
+      </button>
+    </div>
+  </div>
+<!-- End CV Section -->
 
         <!-- SERVICES -->
         <section id="services" class="section services-bg-blue">
@@ -446,5 +579,9 @@
 
   <!-- Your main script -->
   <script src="assets/js/script.js"></script>
+
+ <script src="assets/js/Cv.js"></script>
+
+
 </body>
 </html>
