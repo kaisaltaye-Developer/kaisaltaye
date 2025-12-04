@@ -1,270 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+/* We do NOT touch body or * here, because your main layout already handles that */
 
+/* -----------------------
+   See CV button (About section)
+   ----------------------- */
+#seeCvBtn {
+  /* you’re using .btn.small from main CSS; here we just override colors a bit */
+  padding: 0.6rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: var(--main-color);
+  color: orange;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.03em;
+}
 
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#seeCvBtn:hover {
+  opacity: 0.9;
+}
 
-    /* * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      text-decoration: none;
-      border: none;
-      outline: none;
-      font-family: "Poppins", sans-serif;
-    }
+/* -----------------------
+   Overlay (background)
+   ----------------------- */
+.cv-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(91, 205, 148, 0.6); /* your green overlay */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1rem; /* gives breathing room on small screens */
+}
 
-    :root {
-      --bg-color: #081b29;
-      --main-color: #ea5f30;
-      --text-color: #333;
-      --second-text-color: #555;
-      --white-color: #fff;
-      --cover-color: linear-gradient(45deg, #972f0d, #ea5f30);
-      --pages-color: linear-gradient(90deg, #fff, #eeeeee);
-      --border: 0.125rem solid #ea5f30;
-      --box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
-    }
+.cv-overlay.show {
+  display: flex;
+}
 
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: var(--bg-color);
-      color: var(--text-color);
-      overflow: hidden;
-      gap: 1.5rem;
-    } */
+/* -----------------------
+   Book wrapper (responsive)
+   ----------------------- */
+.wrapper {
+  position: relative;
+  /* Responsive width & height: scale with screen */
+  width: min(60rem, 100vw - 2rem);  /* max 60rem, otherwise full width with margin */
+  height: min(40rem, 80vh);         /* max 40rem, otherwise 80% of viewport height */
+  padding: 2rem;
+  perspective: 250rem;
+  animation: show-animate 0.8s forwards;
+}
 
-    /* See CV button */
-    #seeCvBtn {
-      background: var(--bg-color);
-      color: var(--text-color);
+@keyframes show-animate {
+  0%,
+  30% {
+    opacity: 0;
+    transform: rotate(-20deg) scale(0.9);
+  }
 
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
 
-      padding: 0.6rem 1.6rem;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      background: var(--main-color);
-      /* color: var(--white-color); */
-      color: orange;
-      font-size: 0.95rem;
-      font-weight: 500;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-      letter-spacing: 0.03em;
-    }
+/* -----------------------
+   Covers
+   ----------------------- */
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--cover-color);
+  box-shadow: var(--box-shadow);
+  border-top-left-radius: 0.6rem;
+  border-bottom-left-radius: 0.6rem;
+  transform-origin: right;
+}
 
-    #seeCvBtn:hover {
-      opacity: 0.9;
-    }
+.cover.cover-left {
+  z-index: -1;
+}
 
-    /* Orange overlay modal */
-    .cv-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(91, 205, 148, 0.6); 
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
+.cover.cover-right {
+  z-index: 100;
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
-    .cv-overlay.show {
-      display: flex;
-    }
+.cover.cover-right.turn {
+  transform: rotateY(180deg);
+}
 
-    /* 🔸 Bigger book size */
-    .wrapper {
-      position: relative;
-      width: 60rem;   /* increased */
-      height: 40rem;  /* increased */
-      padding: 2rem;
-      perspective: 250rem;
-      animation: show-animate 2s forwards;
-    }
+/* -----------------------
+   Book & pages
+   ----------------------- */
+.book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  perspective: 250rem;
+}
 
-    @keyframes show-animate {
-      0%,
-      30% {
-        opacity: 0;
-        transform: rotate(-20deg);
-      }
+.book .book-page {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: var(--pages-color);
+  box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  padding: 2rem;
+}
 
-      100% {
-        opacity: 1;
-        transform: rotate(0deg);
-      }
-    }
-
-    .cover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      background: var(--cover-color);
-      box-shadow: var(--box-shadow);
-      border-top-left-radius: 0.6rem;
-      border-bottom-left-radius: 0.6rem;
-      transform-origin: right;
-    }
-
-    .cover.cover-left {
-      z-index: -1;
-    }
-
-    .cover.cover-right {
-      z-index: 100;
-      transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-    }
-
-    .cover.cover-right.turn {
-      transform: rotateY(180deg);
-    }
-
-    .book {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      perspective: 250rem;
-    }
-
-    .book .book-page {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      background: var(--pages-color);
-      box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.1);
-      display: flex;
-      padding: 2rem;
-    }
-
-    .book .book-page.page-left {
+/* Left page (Page 1) */
+.book .book-page.page-left {
   left: 0;
   padding: 1.5rem 2rem; /* match right pages */
   box-shadow: -0.6rem 0.6rem 0.6rem rgba(0, 0, 0, 0.1);
 }
 
-    /* .profile-page {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    } */
-
-
-    .profile-page {
+.profile-page {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
- 
+  width: 100%;   /* full page area */
+  height: 100%;  /* full page area */
 }
-    .profile-page img {
-      min-height: 50px;
-      min-width: 180px;
-      margin-bottom: 0.8rem;
-      max-width: 100%;
-      height: auto;
-    }
 
-    .book-page.page-right {
-      position: absolute;
-      right: 0;
-      transform-style: preserve-3d;
-      padding: 1.5rem 2rem;
-      transform-origin: left;
-      transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-    }
+.profile-page img {
+  min-height: 50px;
+  min-width: 180px;
+  margin-bottom: 0.8rem;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
 
-    .book-page.page-right.turn {
-      transform: rotateY(-180deg);
-    }
+/* Right page sheets */
+.book-page.page-right {
+  position: absolute;
+  right: 0;
+  transform-style: preserve-3d;
+  padding: 1.5rem 2rem;
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
-    .book-page .page-front,
-    .book-page .page-back {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--pages-color);
-      padding: 1.5rem 2rem;
-    }
+.book-page.page-right.turn {
+  transform: rotateY(-180deg);
+}
 
-    .book-page .page-front {
-      transform: rotateY(0deg) translateZ(1px);
-    }
+.book-page .page-front,
+.book-page .page-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--pages-color);
+  padding: 1.5rem 2rem;
+}
 
-    .book-page .page-back {
-      transform: rotateY(180deg) translateZ(1px);
-    }
+.book-page .page-front {
+  transform: rotateY(0deg) translateZ(1px);
+}
 
-    /* .number-page {
-      position: absolute;
-      bottom: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.9rem;
-    } */
+.book-page .page-back {
+  transform: rotateY(180deg) translateZ(1px);
+}
+
+.book-page .page-front img,
+.book-page .page-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Page numbers (you moved them near right side) */
 .number-page {
-    position: absolute;
-    bottom: 3.2rem;
-    left: 86%;
-    transform: translateX(-50%);
-    font-size: 0.9rem;
+  position: absolute;
+  bottom: 3.2rem;
+  left: 86%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
 }
-    .nextprev-btn {
-      position: absolute;
-      bottom: 0.9rem;
-      right: 1.5rem;
-      width: 2rem;
-      height: 2rem;
-      cursor: pointer;
-      font-size: 1.4rem;
-      color: var(--second-text-color);
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      transition: 0.5s;
-    }
 
-    .nextprev-btn:hover {
-      color: var(--main-color);
-    }
+/* Next / prev arrows */
+.nextprev-btn {
+  position: absolute;
+  bottom: 0.9rem;
+  right: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: var(--second-text-color);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
 
-    .nextprev-btn.back {
-      left: 1.5rem;
-      right: auto;
-    }
+.nextprev-btn:hover {
+  color: var(--main-color);
+}
 
-    /* Back to profile button */
-    /* .back-profile {
-      position: absolute;
-      bottom: 1.2rem;
-      right: 2rem;
-      width: 2rem;
-      height: 2rem;
-      background: transparent;
-      border: var(--border);
-      border-radius: 0.3rem;
-      font-size: 1.1rem;
-      color: var(--main-color);
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      transition: 0.5s;
-      cursor: pointer;
-    } */
+.nextprev-btn.back {
+  left: 1.5rem;
+  right: auto;
+}
 
+/* -----------------------
+   Back to profile button
+   ----------------------- */
 .back-profile {
   position: absolute;
-  top: 1.2rem;      /* ⬅️ was bottom */
+  top: 1.2rem;
   right: 2rem;
   width: 2rem;
   height: 2rem;
@@ -272,35 +230,111 @@
   border: var(--border);
   border-radius: 0.3rem;
   font-size: 1.1rem;
-  color: var(--main-color);
+  color: blue; /* as you set */
   display: inline-flex;
   justify-content: center;
   align-items: center;
   transition: 0.5s;
   cursor: pointer;
-  color: blue;
 }
 
+.back-profile:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
 
-    .back-profile:hover {
-      background: var(--main-color);
-      color: var(--white-color);
-    }
+.back-profile p {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(0.5);
+  font-size: 1rem;
+  color: var(--main-color);
+  opacity: 0;
+  transition: 0.5s;
+}
 
-    .back-profile p {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) scale(0.5);
-      font-size: 1rem;
-      color: var(--main-color);
-      opacity: 0;
-      transition: 0.5s;
-    }
+.back-profile:hover p {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  top: -1.8rem;
+}
 
-    .back-profile:hover p {
-      opacity: 1;
-      transform: translateX(-50%) scale(1);
-      top: -1.8rem;
-    }
- 
+/* ===========================
+   RESPONSIVE BREAKPOINTS
+   =========================== */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .wrapper {
+    width: min(48rem, 100vw - 1.5rem);
+    height: min(32rem, 75vh);
+    padding: 1.5rem;
+  }
+
+  .book .book-page,
+  .book .book-page.page-left,
+  .book-page .page-front,
+  .book-page .page-back {
+    padding: 1.2rem 1.4rem;
+  }
+
+  .nextprev-btn {
+    bottom: 0.7rem;
+  }
+
+  .number-page {
+    bottom: 2.6rem; /* slightly up because pages are smaller */
+  }
+
+  .back-profile {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #seeCvBtn {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .wrapper {
+    width: 100%;
+    height: 70vh;
+    padding: 1rem;
+  }
+
+  .book .book-page,
+  .book .book-page.page-left,
+  .book-page .page-front,
+  .book-page .page-back {
+    padding: 0.8rem;
+  }
+
+  .nextprev-btn {
+    width: 1.7rem;
+    height: 1.7rem;
+    font-size: 1.1rem;
+    bottom: 0.5rem;
+  }
+
+  .number-page {
+    font-size: 0.8rem;
+    bottom: 2.2rem;
+    left: 82%; /* bring a bit closer to center on tiny screens */
+  }
+
+  .back-profile {
+    top: 1rem;
+    right: 1rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 1rem;
+  }
+
+  .back-profile p {
+    font-size: 0.75rem;
+  }
+}
